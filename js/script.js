@@ -3,13 +3,26 @@ var btn = document.getElementById("button");
 var burgerName = document.getElementById("name");
 var ingredients = document.getElementsByClassName("ingredient-checkbox");
 var displayPrice = document.getElementById("price");
+var addBtn = document.getElementsByClassName("ingredient-add");
+
+// Make ingredients clickable
+for (var i = 0; i < addBtn.length; i++) {
+    var add = addBtn[i];
+
+    add.addEventListener("click", function () {
+
+        var checkbox = this.previousElementSibling;
+        checkbox.checked = !checkbox.checked;
+    });
+}
+
 
 // Calculate price
-btn.addEventListener("click", function() {
+btn.addEventListener("click", function () {
     var name = burgerName.value.trim();
 
     // Check Name
-    if(name.lenght === 0) {
+    if (name.length === 0) {
         alert("Insert your burger's name");
     } else {
 
@@ -23,11 +36,10 @@ btn.addEventListener("click", function() {
             if (ingredientsCheck.checked === true) {
                 console.log(ingredientsCheck.value);
                 // Updated price
-                price += parseInt(ingredientsCheck.value);                
+                price += parseInt(ingredientsCheck.value);
             }
         }
-        console.log(price);
-        
+
         // On-screen price
         displayPrice.innerHTML = price.toFixed(2);
     }
