@@ -4,6 +4,10 @@ var burgerName = document.getElementById("name");
 var ingredients = document.getElementsByClassName("ingredient-checkbox");
 var displayPrice = document.getElementById("price");
 var addBtn = document.getElementsByClassName("ingredient-add");
+var coupon = document.getElementById("coupon");
+
+// Settings
+var coupons = ["XTIUCZGE7193", "JCIOMEW2843", "KVOWQAWC9238", "HIREWRDW5364", "GTSNDWAE7054"]
 
 // Make ingredients clickable
 for (var i = 0; i < addBtn.length; i++) {
@@ -31,13 +35,19 @@ btn.addEventListener("click", function () {
 
         for (var i = 0; i < ingredients.length; i++) {
             var ingredientsCheck = ingredients[i];
-            console.log(ingredientsCheck.checked)
 
             if (ingredientsCheck.checked === true) {
-                console.log(ingredientsCheck.value);
                 // Updated price
                 price += parseInt(ingredientsCheck.value);
             }
+        }
+
+        // Coupon
+        var couponCode = coupon.value;
+
+        // Check Discount
+        if (coupons.includes(couponCode)) {
+            price -= price * 0.5;
         }
 
         // On-screen price
